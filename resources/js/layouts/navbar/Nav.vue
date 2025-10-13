@@ -9,7 +9,7 @@ import NavLinks from './NavLinks.vue';
         <div class="flex justify-between w-[95%] lg:w-[80%] mx-auto h-18 items-center ">
             <div class="w-[150px] h-[28px]">
                 <Link href="/">
-                    <img src="../../../../public/svg/bw-logo-white-long.svg" alt="best writing logo white">
+                    <img src="/svg/bw-logo-white-long.svg" alt="best writing logo white">
                 </Link>
             </div>
 
