@@ -12,6 +12,7 @@ import Footer from '@/components/custom/Footer.vue';
 import { defineProps } from 'vue';
 
 import JobListingCard from '@/components/custom/JobListingCard.vue';
+import Paginator from '@/components/custom/Paginator.vue';
 
 
 const carouselLogos = [
@@ -29,7 +30,8 @@ const props = defineProps({
     jobs : {
         type : Object,
         required: true,
-    }
+    },
+    // links: PaginationLink[]
 })
 </script>
 
@@ -113,7 +115,7 @@ const props = defineProps({
 
                         <!-- Pagination -->
                         <div>
-
+                            <Paginator :links="props.jobs.links" />
                         </div>
                     </aside>
                 </section>
