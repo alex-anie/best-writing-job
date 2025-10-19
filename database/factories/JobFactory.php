@@ -27,7 +27,7 @@ class JobFactory extends Factory
             'experience'=> $this->faker->randomElement($experienceLevels),
             'location'=> $this->faker->city(),
             'job_category'=> $this->faker->randomElement($categories),
-            'logo'=> $this->faker->imageUrl(200, 200, 'business', true, 'logo'),
+            'logo'=> 'https://placehold.co/200x200/002266/FFFFFF?text=' . urlencode($this->faker->company),
             'job_description' => $this->faker->paragraph(5),
             'salary' => $this->faker->numberBetween(50000, 350000) . 'NGN / Month',
         ];

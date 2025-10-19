@@ -9,8 +9,10 @@ import NavLayouts from '@/layouts/navbar/NavLayouts.vue';
 import { Head } from '@inertiajs/vue3';
 import Autoplay from 'embla-carousel-autoplay';
 import Footer from '@/components/custom/Footer.vue';
+import { defineProps } from 'vue';
 
 import JobListingCard from '@/components/custom/JobListingCard.vue';
+
 
 const carouselLogos = [
     {id: 1, path: "/svg/hubspot.svg", name: "hubspot logo"},
@@ -21,8 +23,14 @@ const carouselLogos = [
     {id: 6, path: "/svg/blinkist.svg", name: "blinkist logo"},
     {id: 7, path: "/svg/elevenwriting.svg", name: "elevenwriting logo"},
     {id: 8, path: "/logo/37signals.png", name: "37signals logo"},
-]
+];
 
+const props = defineProps({
+    jobs : {
+        type : Object,
+        required: true,
+    }
+})
 </script>
 
 <template>
@@ -91,7 +99,22 @@ const carouselLogos = [
                     </aside>
 
                     <aside class="my-10">
-                        <JobListingCard />
+                        <div v-if="props.jobs.data.length > 0">
+                            <JobListingCard 
+                                v-for="job in props.jobs.data"
+                                :key="job.id"
+                                :company="job"
+                            />
+                        </div>
+
+                        <div v-else>
+                            <p class="text-neutral-500">No jobs available right now.</p>
+                        </div>
+
+                        <!-- Pagination -->
+                        <div>
+
+                        </div>
                     </aside>
                 </section>
             </article>
