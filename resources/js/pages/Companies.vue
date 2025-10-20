@@ -5,7 +5,17 @@
     import Footer from '@/components/custom/Footer.vue';
     import PageFormLayouts from '@/components/custom/PageFormLayouts.vue';
     import { Form } from '@inertiajs/vue3';
-import CompanyListingCard from '@/components/custom/CompanyListingCard.vue';
+    import CompanyListingCard from '@/components/custom/CompanyListingCard.vue';
+    import { defineProps } from 'vue';
+import Paginator from '@/components/custom/Paginator.vue';
+
+    const props = defineProps({
+        companies: {
+            type: Object,
+            required: true
+        }
+    });
+
 </script>
 
 <template>
@@ -64,7 +74,7 @@ import CompanyListingCard from '@/components/custom/CompanyListingCard.vue';
                     <aside class="flex justify-between">
                         <div>
                             <div class="">
-                                <p class="text-neutral-800 text-[14px]">Showing <span>1</span> – <span>20</span> of <span>5875</span> results</p>
+                                <p class="text-neutral-800 text-[14px]">Showing <span>{{ props.companies.from }}</span> – <span>{{ props.companies.to }}</span> of <span>{{ props.companies.total }}</span> results</p>
                             </div>
                         </div>
 
@@ -86,7 +96,23 @@ import CompanyListingCard from '@/components/custom/CompanyListingCard.vue';
                     </aside>
 
                     <aside class="mb-8">
-                        <CompanyListingCard />
+                        <!-- Card Listing -->
+                        <div v-if="props.companies.data.length > 0">
+                            <CompanyListingCard 
+                                v-for="company in props.companies.data"
+                                :key="company.id"
+                                :companies="company"
+                            />
+                        </div>
+
+                        <div v-else>
+                            <p class="text-neutral-400 text-center">No Company listing does not exits</p>
+                        </div>
+
+                        <!-- Paginator -->
+                        <div>
+                            <Paginator :links="props.companies.links" />
+                        </div>
                     </aside>
                 </section>
             </article>
