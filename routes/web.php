@@ -1,15 +1,12 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobsController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-
-Route::get('/', [JobsController::class, 'index'])->name('home');
-
-Route::get('/jobs', function () {
-    return Inertia::render('Jobs');
-})->name('jobs');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/jobs', [JobsController::class, 'index'])->name('jobs');
 
 Route::get('/companies', function () {
     return Inertia::render('Companies');

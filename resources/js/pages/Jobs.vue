@@ -6,6 +6,17 @@
     import Footer from '@/components/custom/Footer.vue';
     import PageFormLayouts from '@/components/custom/PageFormLayouts.vue';
     import { Form } from '@inertiajs/vue3';
+    import { defineProps } from 'vue';
+    import Paginator from '@/components/custom/Paginator.vue';
+
+    const props = defineProps({
+        jobs: {
+            type: Object,
+            required: true
+        }
+    })
+
+
 </script>
 
 <template>
@@ -65,7 +76,7 @@
                     <aside class="flex justify-between">
                         <div>
                             <div class="">
-                                <p class="text-neutral-800 text-[14px]">Showing <span>1</span> – <span>20</span> of <span>5875</span> results</p>
+                                <p class="text-neutral-800 text-[14px]">Showing <span>{{ props.jobs.from }}</span> – <span>{{ props.jobs.to }}</span> of <span>{{ props.jobs.total }}</span> results</p>
                             </div>
                         </div>
 
@@ -87,7 +98,22 @@
                     </aside>
 
                     <aside class="mb-8">
-                        <JobListingCard />
+                        <div v-if="props.jobs.data.length > 0">
+                            <JobListingCard 
+                                v-for="job in props.jobs.data"
+                                :key="job.id"
+                                :company="job"
+                            />
+                        </div>
+
+                        <div v-else>
+                            <p class="text-neutral-500">No jobs available right now.</p>
+                        </div>
+
+                        <!-- Pagination -->
+                        <div>
+                            <Paginator :links="props.jobs.links" :meta="props.jobs.meta" />
+                        </div>
                     </aside>
                 </section>
             </article>

@@ -8,11 +8,12 @@
     }
 
     defineProps<{
-        links: PaginationLink[]
+        links: PaginationLink[],
     }>();
 </script>
 
 <template>
+    <!-- Pagination links -->
     <div 
         v-if="links.length > 0"
         class="flex flex-wrap gap-1 mt-6 justify-center"
@@ -23,6 +24,7 @@
                 v-if="link.url"
                 :href="link.url"
                 v-html="link.label"
+                preserve-scroll
                 class="px-3 py-1 border rounded text-sm"
                 :class="{
                     'bg-teal-600 text-white border-teal-600' : link.active,
