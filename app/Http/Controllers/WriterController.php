@@ -12,4 +12,8 @@ class WriterController extends Controller
         $writers = Writer::orderBy('id', 'desc')->paginate(10);
         return Inertia::render('Writers', ['writers'=> $writers]);
     }
+
+    public function show(Writer $writer){
+        return Inertia::render('show/WriterShow', ['writer'=> $writer]);
+    }
 }
