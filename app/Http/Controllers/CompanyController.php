@@ -12,4 +12,8 @@ class CompanyController extends Controller
         $companies = Company::orderBy('id', 'desc')->paginate(10);
         return Inertia::render("Companies", ['companies' => $companies]);
     }
+
+    public function show(Company $company){
+        return Inertia::render('show/CompanyShow', ['company' => $company]);
+    }
 }

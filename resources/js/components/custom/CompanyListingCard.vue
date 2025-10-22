@@ -1,8 +1,10 @@
 <script setup lang="ts">
     import { Heart} from 'lucide-vue-next';
     import { Link } from '@inertiajs/vue3';
+    import { show } from '@/actions/App/Http/Controllers/CompanyController';
 
     interface Companies {
+        id: number
         company_name: string,
         job_role: string,
         logo: string,
@@ -17,6 +19,7 @@
 </script>
 
 <template>
+    <Link :href="show(companies.id)">
     <div class="flex hover:shadow-xl transition-opacity duration-600 ease-in-out relative gap-x-6 border border-neutral-300 mt-10 rounded-[5px] py-8 px-8">
         <div class="absolute right-8">
             <button class="flex justify-center items-center size-10 rounded-full border border-neutral-300">
@@ -46,4 +49,5 @@
             </div>
         </div>
     </div>
+    </Link>
 </template>
