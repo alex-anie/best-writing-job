@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Heart } from 'lucide-vue-next';
-// import brockenImg from './../../../../public/logo/brocken_img.png';
+import { Link } from '@inertiajs/vue3';
+import { show } from '@/actions/App/Http/Controllers/HomeController';
 
     interface Company {
         id: number,
@@ -40,7 +41,7 @@ import { Heart } from 'lucide-vue-next';
         <div>
             <div>
                 <h2 class="font-bold text-xl text-neutral-900">{{ company.company_name }}</h2>
-                <p class="text-teal-800 text-[14px]">{{ company.company_name }}</p>
+                <p class="text-teal-800 text-[14px]">{{ company.job_role }}</p>
             </div>
 
             <div class="space-x-4">
@@ -53,12 +54,12 @@ import { Heart } from 'lucide-vue-next';
                 <span class="bg-neutral-200 py-[2px] px-2 font-bold text-[12px] rounded-[8px] text-neutral-600">{{ company.experience }}</span>
                 <a class="bg-neutral-200 py-[2px] px-2 font-bold text-[12px] rounded-[8px] text-neutral-600" href="/location">{{ company.location }}</a>
                 <a class="bg-neutral-200 py-[2px] px-2 font-bold text-[12px] rounded-[8px] text-neutral-600" href="/category">{{ company.job_category }}</a>
-                <a class="bg-neutral-200 py-[2px] px-2 font-bold text-[12px] rounded-[8px] text-neutral-600" :href="`/jobs/${company.id}`">
+                <!-- <Link class="bg-neutral-200 py-[2px] px-2 font-bold text-[12px] rounded-[8px] text-neutral-600" :href="`/jobs/${company.id}`"> -->
+                <Link class="bg-neutral-200 py-[2px] px-2 font-bold text-[12px] rounded-[8px] text-neutral-600" :href="show({id: company.id})">
                     <span>Apply Now</span>
                     <svg style="width: 14px; height: 14px; margin-left: 5px; opacity: 0.5;" xmlns="http://www.w3.org/2000/svg" class="size-4 inline-block fill-neutral-900" viewBox="0 0 256 256"><path d="M192,64V168L88,64Z" opacity="0.2"></path><path d="M192,56H88a8,8,0,0,0-5.66,13.66L128.69,116,58.34,186.34a8,8,0,0,0,11.32,11.32L140,127.31l46.34,46.35A8,8,0,0,0,200,168V64A8,8,0,0,0,192,56Zm-8,92.69-38.34-38.34h0L107.31,72H184Z"></path></svg>
-                </a>
+                </Link>
             </div>
         </div>
     </div>
-
 </template>

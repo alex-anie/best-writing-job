@@ -3,22 +3,21 @@
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobsController;
+use App\Http\Controllers\WriterController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+
+// Show all
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/jobs', [JobsController::class, 'index'])->name('jobs');
-
 Route::get('/companies', [CompanyController::class, 'index'])->name('companies');
+Route::get('/writers', [WriterController::class, 'index'])->name('writers');
 
-Route::get('/writers', function () {
-    return Inertia::render('Writers');
-})->name('writers');
+// Edit Single
+Route::get('/jobs/{job}', [HomeController::class, 'show'])->name('jobShow');
+Route::get('/companies/{companies}', [CompanyController::class, 'show'])->name('companyShow');
 
 Route::get('/post-a-job', function () {
     return Inertia::render('PostAJob');
 })->name('post-a-job');
-
-// require __DIR__.'/settings.php';
-// require __DIR__.'/auth.php';
-// require __DIR__.'/dashboard.php';

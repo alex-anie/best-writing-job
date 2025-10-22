@@ -6,6 +6,15 @@
     import PageFormLayouts from '@/components/custom/PageFormLayouts.vue';
     import { Form } from '@inertiajs/vue3';
     import WritersListingCard from '@/components/custom/WritersListingCard.vue';
+    import { defineProps } from 'vue';
+    import Paginator from '@/components/custom/Paginator.vue';
+    
+    const props = defineProps({
+        writers: {
+            type: Object,
+            required: true
+        }
+    });
 </script>
 
 <template>
@@ -48,7 +57,7 @@
                     <aside class="flex justify-between">
                         <div>
                             <div class="">
-                                <p class="text-neutral-800 text-[14px]">Showing <span>1</span> – <span>20</span> of <span>5875</span> results</p>
+                                <p class="text-neutral-800 text-[14px]">Showing <span>{{ props.writers.from }}</span> – <span>{{ props.writers.to }}</span> of <span>{{ props.writers.total }}</span> results</p>
                             </div>
                         </div>
 
@@ -70,7 +79,21 @@
                     </aside>
 
                     <aside class="mb-8">
-                        <WritersListingCard />
+                        <div v-if="props.writers.data.length > 0">
+                            <WritersListingCard 
+                                v-for="writer in props.writers.data"
+                                :key="writer.id"
+                                :writers="writer"
+                            />
+                        </div>
+
+                        <div v-else>
+                            <p class="text-neutral-400">No Writer available</p>
+                        </div>
+
+                        <div>
+                            <Paginator :links="props.writers.links" />
+                        </div>
                     </aside>
                 </section>
             </article>

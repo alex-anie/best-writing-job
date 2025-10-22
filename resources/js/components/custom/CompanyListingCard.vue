@@ -30,7 +30,7 @@
                 :src="
                     companies.logo ? companies.logo : `https://raw.githubusercontent.com/alex-anie/best-writing-job/refs/heads/main/public/logo/placeholder.png` 
                 " 
-                :alt="companies.company_name ? `${companies.company_name} logo` : 'brocken Image Logo'"
+                :alt="companies.logo ? `${companies.company_name} logo` : 'brocken Image Logo'"
             >
         </div>
         <div>

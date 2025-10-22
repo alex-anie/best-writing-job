@@ -12,4 +12,8 @@ class HomeController extends Controller
         $jobs = Job::orderBy("id","desc")->paginate(10);
         return Inertia::render('Home', ['jobs' => $jobs]);
     }
+
+    public function show(Job $job){
+        return Inertia::render('show/JobShow', ['job' => $job]);
+    }
 }
