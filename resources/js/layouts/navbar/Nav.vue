@@ -24,9 +24,6 @@ import NavLinks from './NavLinks.vue';
                     <li>
                         <NavLinks href="/writers" :active="$page.component === 'Writers'">Writers</NavLinks>
                     </li>
-                    <li>
-                        <NavLinks href="/post-a-job" :active="$page.component === 'PostAJob'">Post a Job</NavLinks>
-                    </li>
                 </ul>
             </div>
 

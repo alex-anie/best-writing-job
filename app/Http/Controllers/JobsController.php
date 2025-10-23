@@ -12,4 +12,8 @@ class JobsController extends Controller
         $jobs = Job::orderBy("id","desc")->paginate(10);
         return Inertia::render('Jobs', ['jobs' => $jobs]);
     }
+
+    public function create(){
+        return Inertia::render('CreateJob');
+    }
 }

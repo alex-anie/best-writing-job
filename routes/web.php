@@ -19,6 +19,8 @@ Route::get('/jobs/{job}', [HomeController::class, 'show'])->name('jobShow');
 Route::get('/companies/{company}', [CompanyController::class, 'show'])->name('companyShow');
 Route::get('/writers/{writer}', [WriterController::class, 'show'])->name('writerShow');
 
+// Create
+Route::get('/create-job', [JobsController::class, 'create'])->name('createJob');
 
 Route::get('/post-a-job', function () {
     return Inertia::render('PostAJob');

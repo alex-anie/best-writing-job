@@ -1,13 +1,19 @@
 <script setup lang="ts">
+
+    // Components
     import FormButton from '@/components/custom/FormButton.vue';
     import JobListingCard from '@/components/custom/JobListingCard.vue';
     import NavLayouts from '@/layouts/navbar/NavLayouts.vue';
-    import { Search, Globe } from 'lucide-vue-next';
     import Footer from '@/components/custom/Footer.vue';
     import PageFormLayouts from '@/components/custom/PageFormLayouts.vue';
-    import { Form } from '@inertiajs/vue3';
-    import { defineProps } from 'vue';
     import Paginator from '@/components/custom/Paginator.vue';
+
+    // Packages
+    import { Form, Link } from '@inertiajs/vue3';
+    import { defineProps } from 'vue';
+
+    // Icons
+    import { Search, Globe, Plus } from 'lucide-vue-next';
 
     const props = defineProps({
         jobs: {
@@ -21,7 +27,7 @@
 
 <template>
     <NavLayouts>
-        <main class="">
+        <main class="relative">
             <header class="w-[80%] h-18 mx-auto flex items-center">
                 <nav class="space-x-1 py-8">
                     <a href="/" class="text-neutral-700 border border-neutral-700 py-1 px-2  rounded-[5px] text-[12px]">Home</a>
@@ -116,6 +122,14 @@
                         </div>
                     </aside>
                 </section>
+            </article>
+
+            <article>
+                <div>
+                    <Link href="/create-job" class="fixed right-8 bottom-20 text-white size-12 rounded-full bg-teal-700 flex items-center justify-center hover:bg-teal-800">
+                        <Plus />
+                    </Link>
+                </div>
             </article>
         </main>
     </NavLayouts>
